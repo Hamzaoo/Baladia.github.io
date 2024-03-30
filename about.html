@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=" crossorigin="anonymous" />
+  <style>
+    /* Navigation bar styles */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center the navigation items horizontally */
+      padding: 10px;
+      border-bottom: 1px solid #ccc; /* Add a line under the navigation bar */
+    }
+
+    .gallery-title {
+      flex: 1; /* Let the title take up the remaining space */
+    }
+
+    .nav-item {
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 20px;
+      transition: color 0.3s ease;
+      position: relative; /* Add position relative for positioning the line */
+    }
+
+    .nav-item:hover {
+      color: #555;
+    }
+
+    /* Add line under nav item on hover */
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 100%;
+      height: 2px;
+      background-color: #555;
+      transform: scaleX(0); /* Initially hide the line */
+      transition: transform 0.3s ease;
+    }
+
+    .nav-item:hover::after {
+      transform: scaleX(1); /* Show the line on hover */
+    }
+
+    /* Container styles */
+    .container {
+      display: flex;
+      color: #ffffff;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    .left-panel {
+      flex: 0 0 30%; /* Adjust the width as needed */
+    }
+
+    /* Member table styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-left: 20px; /* Space between members and photos */
+      background-color: rgba(255, 255, 255, 0.7); /* Add background color to table */
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: ##000000;
+    }
+
+    tr:nth-child(even) {
+      background-color: #000000;
+    }
+
+    /* Background image */
+    body::before {
+      content: "";
+      background-image: url('mos.png'); /* Replace 'mos.png' with your image file */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: blur(5px); /* Blur the background image */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation bar -->
+  <div class="navbar">
+    <a href="Baladia.html" class="nav-item">الرئيسية</a>
+    <a href="kdmat.html" class="nav-item">الخدمات</a>
+    <a href="links.html" class="nav-item">روابط</a>
+    <a href="about.html" class="nav-item">معلومات عنا</a>
+  </div>
+
+  <div class="container">
+    <!-- Members table -->
+    <table>
+      <tr>
+        <th>الرقم</th>
+        <th>الاسم الرباعي</th>
+        <th>الصفة</th>
+        <th>رقم الهاتف</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>هاني عادل رشيد عوده</td>
+        <td>رئيس البلدية</td>
+        <td>0569320089</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>عبد المنعم طاهر درويش حسن</td>
+        <td>نائب رئيس البلدية</td>
+        <td>0568434743</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>عثمان عبد الحميد سالم حسن</td>
+        <td>عضو مجلس بلدي</td>
+        <td>0566202304</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>مراد هاني إسماعيل أبو ريده</td>
+        <td>عضو مجلس بلدي</td>
+        <td>0566202336</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>وصفي محمد عبد الرزاق أبو ريده</td>
+        <td>عضو مجلس بلدي</td>
+        <td>0566202331</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>ماهر حسن إسماعيل عوده</td>
+        <td>عضو لجنة مالية</td>
+        <td>0566202338</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>سائد عبد المنعم وفيق أبو ريده</td>
+        <td>عضو مجلس بلدي</td>
+        <td>0566202341</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>حسن حسين علي عوده</td>
+        <td>عضو مجلس بلدي</td>
+        <td>0566202335</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>سلامة يوسف فايز حسن</td>
+        <td>عضو مجلس بلدي</td>
+        <td>0566202339</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>ايمان شاهر محمود حسن</td>
+        <td>عضو مجلس بلدي</td>
+        <td>0566202334</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>ايمان حسين عيسى حسن</td>
+        <td>عضو مجلس بلدي</td>
+        <td>0566202307</td>
+      </tr>
+    </table>
+
+    <!-- Photo gallery -->
+    <div class="photos">
+      <!-- Your photo gallery code here -->
+    </div>
+  </div>
+
+  <!-- Social media icons -->
+  <div class="social-media">
+    <a href="https://www.facebook.com/Qusra.Municipality/?locale=ar_AR"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+
+</body>
+</html>

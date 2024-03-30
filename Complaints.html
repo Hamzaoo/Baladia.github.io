@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaints System</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+        .complaint {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>الشكاوي</h1>
+    
+    <form id="complaintForm">
+        <label for="complaint">يمكنك كتابة الشكوى في هذا الصندوق : </label><br>
+        <textarea id="complaint" name="complaint" required></textarea><br>
+        <button type="submit">ارسال</button>
+    </form>
+
+    <div id="complaintList">
+        <!-- Complaints will be dynamically added here -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Load complaints from GitHub Gist on page load
+            loadComplaints();
+
+            // Add event listener for form submission
+            document.getElementById("complaintForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+                saveComplaint();
+            });
+        });
+
+        function saveComplaint() {
+            // Get the complaint text from the form
+            var complaintText = document.getElementById("complaint").value;
+
+            // Create a unique ID for the complaint (timestamp can be used as a simple example)
+            var complaintId = Date.now();
+
+            // Create a new complaint object
+            var complaint = {
+                id: complaintId,
+                text: complaintText
+            };
+
+            // Save the complaint to GitHub Gist
+            saveComplaintToGist(complaint);
+
+            // Clear the form
+            document.getElementById("complaintForm").reset();
+        }
+
+        function loadComplaints() {
+            // Fetch complaints from GitHub Gist via GitHub API
+            fetch('https://api.github.com/gists/{YOUR_GIST_ID}')
+                .then(response => response.json())
+                .then(data => {
+                    // Get the container element where complaints will be displayed
+                    var complaintList = document.getElementById("complaintList");
+
+                    // Clear existing complaints in the container
+                    complaintList.innerHTML = "";
+
+                    // Loop through each file in the Gist and display complaints
+                    for (const file in data.files) {
+                        var complaint = data.files[file];
+                        var complaintElement = document.createElement("div");
+                        complaintElement.classList.add("complaint");
+                        complaintElement.innerHTML = "<strong>Complaint #" + complaint.id + "</strong>: " + complaint.text;
+                        complaintList.appendChild(complaintElement);
+                    }
+                })
+                .catch(error => console.error('Error fetching complaints:', error));
+        }
+
+        function saveComplaintToGist(complaint) {
+            // Prepare data to be sent to Gist
+            var data = {
+                description: "Complaint",
+                public: true,
+                files: {
+                    "complaint-" + complaint.id + ".txt": {
+                        content: complaint.text
+                    }
+                }
+            };
+
+            // Send data to GitHub Gist via API
+            fetch('https://api.github.com/gists/{YOUR_GIST_ID}', {
+                method: 'PATCH', // Use PATCH method to update existing Gist
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    // You might need to provide an authentication token here if your Gist is private
+                    // 'Authorization': 'Bearer YOUR_AUTH_TOKEN'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Complaint saved to Gist successfully!');
+                    // Reload complaints after saving
+                    loadComplaints();
+                } else {
+                    console.error('Failed to save complaint to Gist:', response.statusText);
+                }
+            })
+            .catch(error => console.error('Error saving complaint to Gist:', error));
+        }
+    </script>
+</body>
+</html>

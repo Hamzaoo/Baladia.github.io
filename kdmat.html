@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    /* Navigation bar styles */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center the navigation items horizontally */
+      padding: 10px;
+      border-bottom: 1px solid #ccc; /* Add a line under the navigation bar */
+    }
+
+    .gallery-title {
+      flex: 1; /* Let the title take up the remaining space */
+    }
+
+    .nav-item {
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 20px;
+      transition: color 0.3s ease;
+      position: relative; /* Add position relative for positioning the line */
+    }
+
+    .nav-item:hover {
+      color: #555;
+    }
+
+    /* Add line under nav item on hover */
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 100%;
+      height: 2px;
+      background-color: #555;
+      transform: scaleX(0); /* Initially hide the line */
+      transition: transform 0.3s ease;
+    }
+
+    .nav-item:hover::after {
+      transform: scaleX(1); /* Show the line on hover */
+    }
+
+    /* Container styles */
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    .left-panel {
+      flex: 0 0 30%; /* Adjust the width as needed */
+    }
+
+    /* Photo styles */
+    .photos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 300px;
+      margin: 10px;
+    }
+
+    .photo-container {
+      position: center;
+    }
+
+    .photo {
+      width: 200px;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .photo:hover {
+      transform: scale(1.1);
+      filter: blur(3px); /* Added blur effect on hover */
+    }
+
+    .photo-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 10px;
+      border-radius: 0 0 10px 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none; /* This prevents the title from being interactive */
+    }
+
+    .photo-container:hover .photo-title {
+      opacity: 1;
+    }
+
+    .title {
+      display: none;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    /* Social media styles */
+    .social-media {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .social-media i {
+      font-size: 24px;
+      margin: 0 10px;
+      color: #333;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .social-media i:hover {
+      transform: scale(1.2);
+    }
+
+    /* Contact information styles */
+    .contact-info {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .contact-info p {
+      margin: 5px 0;
+    }
+
+    /* Background image */
+    body::before {
+      content: "";
+      background-image: url('mos.png'); /* Replace 'background.jpg' with your image file */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: blur(5px); /* Blur the background image */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation bar -->
+  <div class="navbar">
+    <a href="Baladia.html" class="nav-item">الرئيسية</a>
+    <a href="kdmat.html" class="nav-item">الخدمات</a>
+    <a href="links.html" class="nav-item">روابط</a>
+    <a href="about.html" class="nav-item">معلومات عنا</a>
+  </div>
+
+    <!-- Photo gallery -->
+    <div class="photos">
+      <div class="column">
+        <div class="photo-container">
+          <a href="Complaints.html">
+            <img src="comp.png" class="photo" title="الشكاوي" data-title="الشكاوي">
+          </a>
+          <div class="photo-title">لشكاوي</div>
+        </div>
+        <div class="photo-container">
+          <a href="suggections.html">
+            <img src="sugg.png" class="photo" title="الاقتراحات" data-title="الاقتراحات">
+          </a>
+          <div class="photo-title">الاقتراحات</div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="photo-container">
+          <a href="https://www.facebook.com/profile.php?id=100057324885091&locale=ar_AR">
+            <img src="eme.png" class="photo" title="خدمات الطوارئ" data-title="خدمات الطوارئ">
+          </a>
+          <div class="photo-title">خدمات الطوارئ</div>
+        </div>
+        <div class="photo-container">
+          <a href="https://www.nedco.ps/">
+            <img src="elec.jpg" class="photo" title="خدمات الكهرباء" data-title="خدمات الكهرباء">
+          </a>
+          <div class="photo-title">خدمات الكهرباء</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social media icons -->
+  <div class="social-media">
+    <a href="https://www.facebook.com/Qusra.Municipality/?locale=ar_AR"><i class="fa fa-facebook"></i></a>
+    <a href="#"><i class="fa fa-twitter"></i></a>
+    <a href="#"><i class="fa fa-instagram"></i></a>
+  </div>
+
+  <!-- Contact information -->
+  <div class="contact-info">
+    <p>Location : Qusar, Nablus - Phone: 0598445514</p>
+  </div>
+</body>
+</html>
